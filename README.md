@@ -1,3 +1,4 @@
-**hyprland-cfg**  
+learning project  
+Hyprland conf  
    
-/home/paha/.config/hypr/  
+Mostly done with chatgpt while trying to learn myself  
