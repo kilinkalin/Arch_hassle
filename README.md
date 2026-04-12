@@ -1,1 +1,3 @@
-# hyprland-cfg
+**hyprland-cfg**  
+   
+/home/paha/.config/hypr/  
