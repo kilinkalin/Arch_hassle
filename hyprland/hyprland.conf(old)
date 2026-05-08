@@ -1,3 +1,5 @@
+# old conf, won't work in the future
+
 #chatgpt discord help
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share
 
