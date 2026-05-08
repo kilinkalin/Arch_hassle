@@ -1,0 +1,59 @@
+{
+
+"position": "top",
+"modules-left": ["custom/discord", "custom/spotify", "custom/google", "custom/steam"],
+"modules-center": ["custom/cava", "clock", "custom/cava"],
+"modules-right": ["mpris", "pulseaudio"],
+
+"clock": {
+"format": "{:%H:%M}"
+},
+
+"custom/discord": {
+"format": "󰙯 ",
+"on-click": "flatpak run com.discordapp.DiscordCanary",
+"tooltip": false
+},
+
+"custom/spotify": {
+"format": "  ",
+"on-click": "spotify-launcher",
+"tooltip": false
+},
+
+"custom/google": {
+"format": "󰊯 ",
+"on-click": "google-chrome-stable",
+"tooltip-format": "google"
+},
+
+"custom/steam": {
+"format": "󰓓 ",
+"on-click": "steam"
+},
+
+"custom/cava": {
+"format": "{}",
+"exec": "~/.config/waybar/cava.sh"
+},
+
+"pulseaudio": {
+"format": "  {volume}%",
+"format-muted": " muted",
+"on-click": "~/.config/waybar/volume-player.sh"
+},
+
+"mpris": {
+"format": "{player_icon} {title} - {artist}",
+"format-paused": " {title} - {artist}",
+
+"player-icons": {
+"spotify": "",
+"firefox": "",
+"chromium": ""
+}
+
+}
+
+
+}
