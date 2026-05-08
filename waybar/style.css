@@ -1,0 +1,43 @@
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 14.5px;
+  color: #D426ED;
+}
+/* bar background */
+window#waybar {
+  background: rgba(29, 23, 49, 0.08);
+  border-bottom: 1px solid #D926ED;
+}
+/* modules spacing */
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#custom-steam,
+#custom-discord {
+  padding: 0 12px;
+  margin: 0 6px;
+  border-radius: 6px;
+}
+/* hover glow */
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-steam:hover,
+#custom-discord:hover {
+
+
+}
+
+#custom-discord {
+  color: #D426ED;
+  padding: 2 5px;
+  font-size: 17px;
+}
+
+#custom-cava {
+  margin-bottom: -13;
+  padding-bottom: 0;
+
+}
