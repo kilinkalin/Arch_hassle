@@ -1,4 +1,9 @@
+
 hl.bind("ALT + TAB", hl.dsp.window.cycle_next())
+
+
+
+
 
 
 -- You can (and should!!) split this configuration into multiple files
@@ -33,6 +38,15 @@ hl.monitor({
     scale    = 1,
 })
 
+-- fake monitor
+hl.monitor({
+    output   = "DP-1",
+    mode     = "1920x1080@60",
+    position = "0x1080",
+    scale    = 1,
+})
+
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -58,9 +72,14 @@ local menu        = "hyprlauncher"
    hl.exec_cmd("nm-applet")
    hl.exec_cmd("waybar")
    hl.exec_cmd("hyprpaper")
-
+--   hl.exec_cmd("hyprexpose")
 
  end)
+
+
+hl.bind("SUPER + g", function()
+    hl.plugin.hyprexpo.expo("toggle")
+end)
 
 
 -------------------------------
@@ -264,14 +283,40 @@ for i = 1, 9 do
     hl.bind("SUPER + " .. i, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
+-- Switch to workspace
+for i = 1, 9 do
+    hl.bind("CTRL + SUPER + " .. i, hl.dsp.focus({ workspace = i }))
+end
+
+
+hl.config({
+    plugin = {
+        hyprexpo = {
+            columns = 3,
+            gap_size = 0,
+            bg_col = "rgb(111111)",
+            workspace_method = "center current",
+            skip_empty = true,
+            gesture_distance = 300,
+        },
+    },
+})
+
+hl.bind("SUPER + tab", function()
+    hl.plugin.hyprexpo.expo("toggle")
+end)
+
+
+
 -- !WORKSPACE to specific monitor
 hl.workspace_rule({ workspace = "1", monitor = "DP-2", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-3", default = true })
 hl.workspace_rule({ workspace = "3", monitor = "HDMI-A-1", default = true })
 
-
-
-
+--[[
+-- hyprexpo WORKSPACE OVERVIEW
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("pkill -SIGUSR1 hyprexpose || hyprexpose &"))
+--]]
 
 -- terminal open
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal))
@@ -340,6 +385,9 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
+
+
+
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
