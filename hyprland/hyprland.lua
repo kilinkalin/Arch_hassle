@@ -272,6 +272,27 @@ hl.device({
     force_no_accel,
     sensitivity = -0.5
 })
+
+hl.device({
+    name = "logitech-optical-usb-mouse",
+    natural_scroll = false,
+    force_no_accel,
+    accel_profile = "flat",
+    sensitivity = 0.5
+})
+
+-- uusin sinowealth-model-o-eternal
+
+hl.device({
+    name = "sinowealth-model-o-eternal",
+    natural_scroll = false,
+    force_no_accel,
+    accel_profile = "flat",
+    sensitivity = 1
+})
+
+
+
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -288,24 +309,25 @@ for i = 1, 9 do
     hl.bind("CTRL + SUPER + " .. i, hl.dsp.focus({ workspace = i }))
 end
 
-
+--[[
 hl.config({
     plugin = {
         hyprexpo = {
             columns = 3,
             gap_size = 0,
-            bg_col = "rgb(111111)",
+            bg_col = "rgba(1, 1, 1, 0)",
             workspace_method = "center current",
             skip_empty = true,
-            gesture_distance = 300,
         },
     },
 })
+--]]	
 
+--[[
 hl.bind("SUPER + tab", function()
     hl.plugin.hyprexpo.expo("toggle")
 end)
-
+--]]
 
 
 -- !WORKSPACE to specific monitor
