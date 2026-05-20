@@ -1,20 +1,20 @@
 #!/bin/bash
 
-title=$(playerctl metadata title 2>/dev/null)
-artist=$(playerctl metadata artist 2>/dev/null)
-status=$(playerctl status 2>/dev/null)
+vol() {
+    pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1
+}
 
-if [ "$status" = "Playing" ]; then
-    pause_label="⏸ Pause"
-else
-    pause_label="▶ Play"
-fi
+title=$(playerctl metadata title 2>/dev/null || echo "Ei musiikkia")
+artist=$(playerctl metadata artist 2>/dev/null || echo "")
 
-choice=$(echo -e "⏮ Edellinen\n$pause_label\n⏭ Seuraava\n🎵 $title - $artist" | rofi -dmenu -p "Player")
-
-case "$choice" in
-    "⏮ Edellinen") playerctl previous ;;
-    "⏸ Pause") playerctl pause ;;
-    "▶ Play") playerctl play ;;
-    "⏭ Seuraava") playerctl next ;;
-esac
+yad --title="Player" \
+    --text="🎵 $title - $artist\n🔊 $(vol)" \
+    --on-top \
+    --skip-taskbar \
+    --width=300 \
+    --button="⏮:bash -c 'playerctl previous'" \
+    --button="⏸/▶:bash -c 'playerctl play-pause'" \
+    --button="⏭:bash -c 'playerctl next'" \
+    --button="🔉:bash -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%'" \
+    --button="🔊:bash -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%'" \
+    --button="🔇:bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle'"
