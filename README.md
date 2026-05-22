@@ -15,3 +15,7 @@ Current plan:
 - Switch school laptop to Arch Linux
 
 <img width="676" height="466" alt="image" src="https://github.com/user-attachments/assets/005c25f5-34ef-48b5-a3c0-1435a98e06d2" />
+
+So.... I installed CachyOS.
+22.5.2026..
+<img width="877" height="509" alt="image" src="https://github.com/user-attachments/assets/a0694bbc-39e1-4e24-855d-88fba1dc781f" />
