@@ -1,14 +1,9 @@
 
-hl.bind("ALT + TAB", hl.dsp.window.cycle_next())
 
-
-
-
-
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
+hl.bind("ALT + TAB", function()
+    hl.dispatch(hl.dsp.window.cycle_next()) -- vaihda fokus toiseen ikkunaan
+    hl.dispatch(hl.dsp.window.bring_to_top()) -- nosta se päällimmäiseksi
+end)
 
  
 ------------------
@@ -66,21 +61,16 @@ local menu        = "hyprlauncher"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 
- hl.on("hyprland.start", function () 
-   hl.exec_cmd(terminal)
-   hl.exec_cmd("flatpak run com.discordapp.Discord")
-   hl.exec_cmd("nm-applet")
-   hl.exec_cmd("waybar")
-   hl.exec_cmd("hyprpaper")
---   hl.exec_cmd("hyprexpose")
-
- end)
-
-
+hl.exec_cmd("dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+hl.exec_cmd("gnome-keyring-daemon --start --replace --components=secrets,pkcs11,ssh")
+hl.exec_cmd("pkill -x waybar; sleep 0.3; waybar &")
+hl.exec_cmd("pkill -x hyprpaper; sleep 0.3; hyprpaper &")
+hl.exec_cmd("pkill -x nm-applet; sleep 0.3; nm-applet &")
+hl.exec_cmd("pkill -x wl-clip-persist; sleep 0.3; wl-clip-persist --clipboard both &")
+hl.exec_cmd("systemctl --user start hyprpolkitagent")
 hl.bind("SUPER + g", function()
     hl.plugin.hyprexpo.expo("toggle")
 end)
-
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -124,8 +114,8 @@ hl.config({
         border_size = 1,
 
         col = {
-            active_border   = { colors = {"rgba(D426EDFF)", "rgba(D426EDDD)"}, angle = 75 },
-            inactive_border = "rgba(D426ED65)",
+            active_border   = { colors = {"rgba(0505C4FF)", "rgba(0505C4DD)"}, angle = 40 },
+            inactive_border = "rgba(0505C499)",
         },
 
         layout = "dwindle",
@@ -235,7 +225,7 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = 1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
@@ -288,7 +278,7 @@ hl.device({
     natural_scroll = false,
     force_no_accel,
     accel_profile = "flat",
-    sensitivity = 1
+    sensitivity = 0.7
 })
 
 
@@ -507,3 +497,5 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("NVD_BACKEND", "direct")
 hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+hl.env("__GL_GSYNC_ALLOWED", "1")
